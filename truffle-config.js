@@ -1,3 +1,6 @@
+const HDWalletProvider = require('truffle-hdwallet-provider');
+require('dotenv').config();
+
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
   // for more about customizing your Truffle configuration!
@@ -9,6 +12,13 @@ module.exports = {
     },
     develop: {
       port: 8545
+    },
+    sepolia: {
+      provider: () => new HDWalletProvider(process.env.MNEMONIC, 
+        "https://sepolia.infura.io/v3/" + process.env.INFURA_API_KEY),
+      network_id: 11155111
     }
+
+
   }
 };
